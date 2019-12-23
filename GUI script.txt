@@ -1,0 +1,552 @@
+import webbrowser
+
+from openpyxl import *
+from tkinter import *
+
+# globally declare wb and sheet variable
+
+# opening the existing excel file
+wb = load_workbook('C:\\Users\\mon pc\\FICH.xlsx')
+
+# create the sheet object
+sheet = wb.active
+
+
+def excel():
+    # resize the width of columns in
+    # excel spreadsheet
+    sheet.column_dimensions['A'].width = 30
+    sheet.column_dimensions['B'].width = 10
+    sheet.column_dimensions['C'].width = 10
+    sheet.column_dimensions['D'].width = 20
+    sheet.column_dimensions['E'].width = 20
+    sheet.column_dimensions['F'].width = 40
+    sheet.column_dimensions['G'].width = 50
+    sheet.column_dimensions['H'].width = 50
+    sheet.column_dimensions['I'].width = 50
+    sheet.column_dimensions['J'].width = 50
+    sheet.column_dimensions['L'].width = 50
+    sheet.column_dimensions['M'].width = 50
+    sheet.column_dimensions['L'].width = 51
+    sheet.column_dimensions['M'].width = 52
+
+    # write given data to an excel spreadsheet
+    # at particular location
+    sheet.cell(row=1, column=1).value = "SEXE"
+    sheet.cell(row=1, column=2).value = "AGE"
+    sheet.cell(row=1, column=3).value = "TA"
+    sheet.cell(row=1, column=4).value = "CHOL"
+    sheet.cell(row=1, column=5).value = "INFRA"
+    sheet.cell(row=1, column=6).value = "AVC"
+    sheet.cell(row=1, column=7).value = "DIABETE"
+    sheet.cell(row=1, column=8).value = "ANT FAMILIAL"
+    sheet.cell(row=1, column=9).value = "FUMMEUR"
+    sheet.cell(row=1, column=10).value = "Sous trait HTA"
+    sheet.cell(row=1, column=11).value = "SCORE"
+    sheet.cell(row=1, column=12).value = "LEVEL"
+
+
+# Function to set focus (cursor)
+
+
+def focus1(event):
+    # set focus on the course_field box
+    s.focus_set()
+
+
+# Function to set focus
+def focus2(event):
+    # set focus on the sem_field box
+    ENTerage.focus_set()
+
+
+# Function to set focus
+def focus3(event):
+    # set focus on the form_no_field box
+    ENTerTA.focus_set()
+
+
+# Function to set focus
+def focus4(event):
+    # set focus on the email_id_field box
+    ENTerCHOL.focus_set()
+
+
+# Function to set focus
+def focus5(event):
+    # set focus on the address_field box
+    t.focus_set()  # INFRA
+
+
+# Function to set focus
+def focus6(event):
+    # set focus on the address_field box
+    STR.focus_set()
+
+
+# Function to set focus
+def focus8(event):
+    # set focus on the sem_field box
+    P.focus_set()
+    # AVC
+
+
+# Function to set focus
+def focus9(event):
+    # set focus on the form_no_field box
+    K.focus_set()  # diab
+
+
+# Function to set focus
+def focus10(event):
+    # set focus on the contact_no_field box
+    F.focus_set()
+    #  fam
+
+
+# Function to set focus
+def focus11(event):
+    # set focus on the email_id_field box
+    v.focus_set()  # fum
+
+
+def focus16(event):
+    # set focus on the course_field box
+    score.focus_set()
+
+
+# Function to set focus
+def focus26(event):
+    # set focus on the sem_field box
+    commentaire.focus_set()
+
+
+# Function for clearing the
+# contents of text entry boxes
+def clear(self):
+    # clear the content of text entry box
+    s.delete(0, END)
+    ENTerage.delete(0, END)
+    ENTerTA.delete(0, END)
+    ENTerCHOL.delete(0, END)
+    t.delete(0, END)
+    P.delete(0, END)
+    K.delete(0, END)
+    F.delete(0, END)
+    v.delete(0, END)
+    STR.delete(0, END)
+    score.delete(0, END)
+    commentaire.delete(0, END)
+
+
+def insert():
+    # if user not fill any entry
+    # then print "empty input"
+    if (s.get() == "" and
+            ENTerage.get() == "" and
+            ENTerTA.get() == "" and
+            STR.get() == "" and
+            v.get() == "" and
+            F.get() == "" and
+            K.get() == "" and
+            t.get() == "" and
+            P.get() == "" and
+            ENTerCHOL.get() == ""):
+
+        print("empty input")
+
+    else:
+
+        # assigning the max row and max column
+        # value upto which data is written
+        # in an excel sheet to the variable
+        current_row = sheet.max_row
+        current_column = sheet.max_column
+
+        # get method returns current text
+        # as string which we write into
+        # excel spreadsheet at particular location
+        sheet.cell(row=current_row + 1, column=1).value = s.get()
+        sheet.cell(row=current_row + 1, column=2).value = ENTerage.get()
+        sheet.cell(row=current_row + 1, column=3).value = ENTerTA.get()
+        sheet.cell(row=current_row + 1, column=10).value = STR.get()
+        sheet.cell(row=current_row + 1, column=5).value = v.get()
+        sheet.cell(row=current_row + 1, column=6).value = F.get()
+        sheet.cell(row=current_row + 1, column=7).value = K.get()
+        sheet.cell(row=current_row + 1, column=8).value = t.get()
+        sheet.cell(row=current_row + 1, column=9).value = P.get()
+        sheet.cell(row=current_row + 1, column=4).value = ENTerCHOL.get()
+        sheet.cell(row=current_row + 1, column=11).value = score.get()
+        sheet.cell(row=current_row + 1, column=12).value = commentaire.get()
+
+        # save the file
+        wb.save('C:\\Users\\mon pc\\FICH.xlsx')
+
+        # set focus on the name_field box
+        s.focus_set()
+
+        # call the clear() function
+        clear()
+
+
+window = Tk()
+window.geometry('1600x700')
+excel()
+window.title("MedBio-Card Risk Calculator")
+window.iconbitmap("received_45404910886590.ico")
+filename = PhotoImage(file="416952_white-and-blue-backgroundJJ.png")
+background_label = Label(window, image=filename)
+background_label.place(x=1, y=1)
+C2 = Canvas(window, height=100, width=100)
+filename2 = PhotoImage(file="KKL.png")
+background_label = Label(window, image=filename2)
+background_label.place(x=120, y=9)
+filename4 = PhotoImage(file="Capture_600.png")
+background_label = Label(window, image=filename4)
+background_label.place(x=10, y=9)
+C5 = Canvas(window, height=100, width=100)
+filename5 = PhotoImage(file="received_454049108865902.png")
+background_label = Label(window, image=filename5)
+background_label.place(x=600, y=9)
+
+#############################################################################################
+
+age = StringVar()
+TA = StringVar()
+CHOL = StringVar()
+score = StringVar()
+commentaire = StringVar()
+conseils = StringVar()
+POID = StringVar()
+v = BooleanVar()
+s = BooleanVar()
+t = BooleanVar()
+P = BooleanVar()
+K = BooleanVar()
+F = BooleanVar()
+STR = BooleanVar()
+ALC = BooleanVar()
+
+fum = Radiobutton(window, text="Yes", font="Helvetica 15 bold italic", variable=v, value=1)
+fum.place(x=1200, y=240)
+fum = Radiobutton(window, text="No", font="Helvetica 15 bold italic", variable=v, value=2)
+fum.place(x=1280, y=240)
+
+sa2 = Radiobutton(window, text="M", font="Helvetica 15 bold italic", variable=s, value=1)
+sa2.place(x=160, y=120)
+sz2 = Radiobutton(window, text="F", font="Helvetica 15 bold italic", variable=s, value=2)
+sz2.place(x=280, y=120)
+
+fam = Radiobutton(window, text="Yes", font="Helvetica 15 bold italic", variable=F, value=1)
+fam.place(x=1200, y=120)
+fam2 = Radiobutton(window, text="No", font="Helvetica 15 bold italic", variable=F, value=2)
+fam2.place(x=1280, y=120)
+labelzrT = Label(window, text='Ancd Familial?', font="Helvetica 15 bold italic", bg="gray", fg='white')
+labelzrT.place(x=1020, y=120)
+
+str1 = Radiobutton(window, text="Yes", font="Helvetica 15 bold italic", variable=STR, value=1)
+str1.place(x=1200, y=160)
+str2 = Radiobutton(window, text="No", font="Helvetica 15 bold italic", variable=STR, value=2)
+str2.place(x=1280, y=160)
+labelzrTB = Label(window, text='Sous trait HTA?', font="Helvetica 15 bold italic", bg="gray", fg='white')
+labelzrTB.place(x=1020, y=160)
+
+alc = Radiobutton(window, text="Yes", font="Helvetica 15 bold italic", variable=ALC, value=1)
+alc.place(x=1200, y=200)
+alc1 = Radiobutton(window, text="No", font="Helvetica 15 bold italic", variable=ALC, value=2)
+alc1.place(x=1280, y=200)
+labelzrTBA = Label(window, text='Trait Hyper-CHOL', font="Helvetica 15 bold italic", bg="gray", fg='white')
+labelzrTBA.place(x=1020, y=200)
+
+infr1 = Radiobutton(window, text="Yes", font="Helvetica 15 bold italic", variable=t, value=1)
+infr1.place(x=650, y=160)
+infr2 = Radiobutton(window, text="No", font="Helvetica 15 bold italic", variable=t, value=2)
+infr2.place(x=800, y=160)
+
+avc1 = Radiobutton(window, text="Yes", font="Helvetica 15 bold italic", variable=P, value=1)
+avc1.place(x=650, y=200)
+avc2 = Radiobutton(window, text="No", font="Helvetica 15 bold italic", variable=P, value=2)
+avc2.place(x=800, y=200)
+
+diab1 = Radiobutton(window, text="Yes", font="Helvetica 15 bold italic", variable=K, value=1)
+diab1.place(x=650, y=240)
+diab2 = Radiobutton(window, text="No", font="Helvetica 15 bold italic", variable=K, value=2)
+diab2.place(x=800, y=240)
+
+new = 1
+url = "https://web.facebook.com/Cabinet-de-cardiologie-Dr-HORCH-Abdelnor-109681683766679/?__tn__=%2Cd%2CP-R&eid=ARCI" \
+      "-Q6CD8haJaXKiyc3QjHtG_n2ryUWbuqW8bud-7nawyZMlYSCsO9gmdKjHNBnVyvBwLjGWjt0V1qN "
+
+new2 = 1
+url2 = "https://www.google.com/search?rlz=1C1GCEA_enMA872MA872&sxsrf=ACYBGNThjVYR3jxzeuyuv-oZqWJpfAgL4Q:1574893522087&q" \
+       "=cabinet+cardiologie+maps&npsic=0&rflfq=1&rlha=0&rllag=34016028,-6828432," \
+       "3210&tbm=lcl&ved=2ahUKEwi2psXHt4vmAhXF7eAKHS7eD3UQtgN6BAgLEAQ&tbs=lrf:!1m4!1u3!2m2!3m1!1e1!1m4!1u2!2m2!2m1!1e1" \
+       "!2m1!1e2!2m1!1e3!3sIAE,lf:1,lf_ui:2&rldoc=1#rlfi=hd:;si:;mv:[[34.065754399999996,-6.755579900000001]," \
+       "[33.5520776,-7.699449400000001]];tbs:lrf:!1m4!1u3!2m2!3m1!1e1!1m4!1u2!2m2!2m1!1e1!2m1!1e2!2m1!1e3!3sIAE,lf:1," \
+       "lf_ui:2 "
+
+
+def openweb2():
+    webbrowser.open(url2, new=new2)
+
+
+def openweb():
+    webbrowser.open(url, new=new)
+
+
+def Risk():
+    comm = " "
+    sc = 0
+    if s.get() == 1:
+        sc += 0
+        if 30 <= int(age.get()) <= 34 or int(age.get()) <= 30:
+            sc += 0
+        elif 35 <= int(age.get()) <= 39:
+            sc += 2
+        elif 40 <= int(age.get()) <= 44:
+            sc += 5
+        elif 45 <= int(age.get()) <= 49:
+            sc += 7
+        elif 50 <= int(age.get()) <= 60:
+            sc += 10
+        elif 61 <= int(age.get()) <= 70:
+            sc += 12
+        elif 71 <= int(age.get()) <= 80:
+            sc += 14
+        elif int(age.get()) >= 81:
+            sc += 15
+        if int(TA.get()) <= 120:
+            labelz4.config(text='TA bas  : essayer de le maintenir', bg='Green', fg='white')
+            sc += 0
+        elif 120 <= int(TA.get()) <= 129:
+            sc += 1
+            labelz4.config(text='TA bon  : essayer de le maintenir', bg='Green', fg='white')
+        elif 130 <= int(TA.get()) <= 139:
+            sc += 2
+            labelz4.config(text='TA bon  : essayer de le maintenir', bg='Green', fg='white')
+        elif 140 <= int(TA.get()) <= 149:
+            sc += 3
+        elif 150 <= int(TA.get()) <= 159:
+            sc += 4
+        elif int(TA.get()) >= 160:
+            sc += 5
+        if int(TA.get()) >= 140:
+            labelz4.config(text='TA élevé : Traquer le sel caché, Bouger régulièrement', bg='Green', fg='white')
+        if int(CHOL.get()) <= 4.1:
+            sc += 0
+            labelz5.config(text="CHOLESTEROL faible: essayer de le maintenir.",
+                           bg='Green',
+                           fg='white')
+        elif 4.1 <= int(CHOL.get()) <= 5.19:
+            sc += 1
+            labelz5.config(text="CHOLESTEROL bon: Continuer à le maintenir.",
+                           bg='Green',
+                           fg='white')
+        elif 5.2 <= int(CHOL.get()) <= 6.19:
+            sc += 2
+            labelz5.config(text="CHOLESTEROL élevé: Réduisez l'apport de graisses, Mangez des fruits et des légumes.",
+                           bg='Green',
+                           fg='white')
+        elif 6.2 <= int(CHOL.get()) <= 7.2:
+            sc += 3
+            labelz5.config(text="CHOLESTEROL élevé: Réduisez l'apport de graisses, Mangez des fruits et des légumes.",
+                           bg='Green',
+                           fg='white')
+        elif int(CHOL.get()) >= 7.2:
+            sc += 4
+            labelz5.config(text="CHOLESTEROL élevé: Réduisez l'apport de graisses, Mangez des fruits et des légumes.",
+                           bg='Green',
+                           fg='white')
+        if t.get() == 1:
+            sc += 2
+        elif t.get() == 2:
+            sc += 0
+        if STR.get() == 1:
+            sc += 0
+        elif STR.get() == 2:
+            sc += 2
+        if ALC.get() == 1:
+            sc += 0
+        elif ALC.get() == 2:
+            sc += 2
+        if v.get() == 1:
+            sc += 4
+        elif v.get() == 2:
+            sc += 0
+        if F.get() == 1:
+            sc += 2
+        elif F.get() == 2:
+            sc += 0
+        if P.get() == 1:
+            sc += 2
+        elif P.get() == 2:
+            sc += 0
+        if K.get() == 1:
+            sc += 2
+            labelz7.config(text='Diabétique, maintenir votre glycémie stable ', bg='Green', fg='white')
+        elif K.get() == 2:
+            sc += 0
+        if sc <= 14:
+            comm = "Low risk"
+        elif 15 <= sc <= 19:
+            comm = "Medium risk"
+        elif sc >= 20:
+            comm = "High risk"
+    elif s.get() == 2:
+        if 30 <= int(age.get()) <= 34 or int(age.get()) <= 30:
+            sc += 0
+        elif 35 <= int(age.get()) <= 39:
+            sc += 2
+        elif 40 <= int(age.get()) <= 44:
+            sc += 4
+        elif 45 <= int(age.get()) <= 49:
+            sc += 5
+        elif 50 <= int(age.get()) <= 60:
+            sc += 7
+        elif 61 <= int(age.get()) <= 70:
+            sc += 9
+        elif 71 <= int(age.get()) <= 80:
+            sc += 11
+        elif int(age.get()) >= 81:
+            sc += 13
+        if int(TA.get()) <= 120:
+            sc += 0
+            labelz4.config(text='TA bas  : essayer de le maintenir', bg='Green', fg='white')
+        elif 120 <= int(TA.get()) <= 129:
+            sc += 1
+            labelz4.config(text='TA bon  : essayer de le maintenir', bg='Green', fg='white')
+        elif 130 <= int(TA.get()) <= 139:
+            sc += 4
+            labelz4.config(text='TA bon  : essayer de le maintenir', bg='Green', fg='white')
+        elif 140 <= int(TA.get()) <= 149:
+            sc += 5
+        elif 150 <= int(TA.get()) <= 159:
+            sc += 6
+        elif int(TA.get()) >= 160:
+            sc += 7
+        elif int(TA.get()) >= 140:
+            labelz4.config(text='TA élevé : Traquer le sel caché, Bouger régulièrement', bg='Green', fg='white')
+        if int(CHOL.get()) <= 4.1:
+            sc += 0
+            labelz5.config(text="CHOLESTEROL faible: essayer de le maintenir.",
+                           bg='Green',
+                           fg='white')
+        elif 4.1 <= int(CHOL.get()) <= 5.19:
+            sc += 1
+            labelz5.config(text="CHOLESTEROL bon: Continuer à le maintenir.",
+                           bg='Green',
+                           fg='white')
+        elif 5.2 <= int(CHOL.get()) <= 6.19:
+            sc += 3
+            labelz5.config(text="CHOLESTEROL élevé: Réduisez l'apport de graisses, Mangez des fruits et des légumes.",
+                           bg='Green',
+                           fg='white')
+        elif 6.2 <= int(CHOL.get()) <= 7.2:
+            sc += 4
+            labelz5.config(text="CHOLESTEROL élevé: Réduisez l'apport de graisses, Mangez des fruits et des légumes.",
+                           bg='Green',
+                           fg='white')
+        elif int(CHOL.get()) >= 7.2:
+            sc += 5
+            labelz5.config(text="CHOLESTEROL élevé: Réduisez l'apport de graisses, Mangez des fruits et des légumes.",
+                           bg='Green',
+                           fg='white')
+        if t.get() == 1:
+            sc += 1
+        elif t.get() == 2:
+            sc += 0
+        if STR.get() == 1:
+            sc += 0
+        elif STR.get() == 2:
+            sc += 2
+        if ALC.get() == 1:
+            sc += 0
+        elif ALC.get() == 2:
+            sc += 2
+        if F.get() == 1:
+            sc += 1
+        elif F.get() == 2:
+            sc += 0
+        if v.get() == 1:
+            sc += 3
+        elif v.get() == 2:
+            sc += 0
+        if P.get() == 1:
+            sc += 1
+        elif P.get() == 2:
+            sc += 1
+        if K.get() == 1:
+            sc += 1
+            labelz7.config(text='Diabétique, maintenir votre glycémie stable', bg='Green', fg='white')
+        elif K.get() == 2:
+            sc += 0
+        if sc <= 17:
+            comm = "Low risk"
+        elif 18 <= sc <= 21:
+            comm = "Medium risk"
+        elif sc >= 22:
+            comm = "High risk"
+    commentaire.set(comm)
+    score.set(sc)
+
+
+#######################################################################################################################
+
+lb1 = Label(window, text="Votre Sexe", font="Helvetica 15 bold italic", bg="gray", fg='white')
+lb1.place(x=40, y=120)
+lbs1 = Label(window, text="Bienvenue, Welcome,?????", font="Helvetica 30 bold italic", fg='blue')
+lbs1.place(x=860, y=10)
+lb2 = Label(window, text="Votre Age", font="Helvetica 15 bold italic", bg="gray", fg='white')
+lb2.place(x=40, y=160)
+lb3 = Label(window, text="Fumeur ?", font="Helvetica 15 bold italic", bg="gray", fg='white')
+lb3.place(x=1020, y=240)
+lb4 = Label(window, text="TA (mmHg)", font="Helvetica 15 bold italic", bg="gray", fg='white')
+lb4.place(x=40, y=240)
+lb5 = Label(window, text="Cholesterol (mml/l) ", font="Helvetica 15 bold italic", bg="gray", fg='white')
+lb5.place(x=450, y=120)
+lb6 = Label(window, text="ANTCD__INFRA?", font="Helvetica 15 bold italic", bg="gray", fg='white')
+lb6.place(x=450, y=160)
+lb7 = Label(window, text="ANTCD___AVC ?", font="Helvetica 15 bold italic", bg="gray", fg='white')
+lb7.place(x=450, y=200)
+lb8 = Label(window, text="DIABETE _____?", font="Helvetica 15 bold italic", bg="gray", fg='white')
+lb8.place(x=450, y=240)
+lb9 = Label(window, text="Risk Level", font="Helvetica 15 bold italic", bg="gray", fg='white')
+lb9.place(x=820, y=400)
+lb10 = Label(window, text="Votre Score est ", font="Helvetica 15 bold italic", bg="gray", fg='white')
+lb10.place(x=10, y=400)
+labelz2 = Label(window, text='Conseils', font="Helvetica 15 bold italic", bg="white", fg='black')
+labelz2.place(x=560, y=440)
+labelz7 = Label(window, text='Conseil 1', font="Helvetica 15 bold italic", bg="gray", fg='white')
+labelz7.place(x=1, y=480)
+labelz4 = Label(window, text='Conseil 2', font="Helvetica 15 bold italic", bg="gray", fg='white')
+labelz4.place(x=1, y=520)
+labelz5 = Label(window, text='Conseil 3', font="Helvetica 15 bold italic", bg="gray", fg='white')
+labelz5.place(x=1, y=560)
+
+ENTerage = Entry(window, font="Helvetica 15 bold italic", textvariable=age)
+ENTerage.place(x=160, y=160)
+
+ENTerTA = Entry(window, font="Helvetica 15 bold italic", textvariable=TA)
+ENTerTA.place(x=160, y=240)
+ENTerCHOL = Entry(window, font="Helvetica 15 bold italic", textvariable=CHOL)
+ENTerCHOL.place(x=650, y=120)
+ENTerpo = Entry(window, font="Helvetica 15 bold italic", textvariable=POID)
+ENTerpo.place(x=160, y=200)
+labelzr = Label(window, text='Poids (Kg)', font="Helvetica 15 bold italic", bg="gray", fg='white')
+labelzr.place(x=40, y=200)
+
+ENTerscore = Entry(window, font="Helvetica 15 bold italic", textvariable=score)
+ENTerscore.place(x=200, y=400)
+ENTercomm = Entry(window, font="Helvetica 15 bold italic", textvariable=commentaire)
+ENTercomm.place(x=960, y=400)
+BT = Button(window, text='Valider', font="Helvetica 15 bold italic", command=Risk)
+BT.place(x=500, y=320)
+BT = Button(window, text='envoyer', font="Helvetica 15 bold italic", command=insert)
+BT.place(x=600, y=320)
+SH = Button(window, text='Trouver une cabinet cardiologie', font="Helvetica 15 bold italic", bg="white",
+            command=openweb2)
+SH.place(x=950, y=600)
+SH = Button(window, text='Contacter un medecin', font="Helvetica 15 bold italic", bg="white", command=openweb)
+SH.place(x=700, y=600)
+
+window.mainloop()
